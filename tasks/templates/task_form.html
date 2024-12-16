@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-4 shadow-lg rounded">
+                <h2 class="text-center mb-4">{% if form.instance.pk %}Edit Task{% else %}Create Task{% endif %}</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary btn-block">
+                        {% if form.instance.pk %}Update{% else %}Create{% endif %}
+                    </button>
+                    <a href="{% url 'task_list' %}" class="btn btn-secondary btn-block mt-3">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
